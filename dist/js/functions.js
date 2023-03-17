@@ -202,13 +202,12 @@ function openCloseBurger() {
     menuBtn.addEventListener("click", () => {
       document.body.classList.toggle("_locked");
       menuBtn.classList.toggle("_active");
+      //-----------------------------------------------------------------
       document.querySelector(".menu__body").classList.toggle("_active");
     });
   }
 }
 openCloseBurger();
-<<<<<<< HEAD
 //------------------------------------------------------------------
-=======
+
 //-----------------------------------------------------------------
->>>>>>> b36678b (finished header and mobile burger)

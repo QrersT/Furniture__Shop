@@ -332,16 +332,19 @@
     font-size: 16px;
     position: absolute;
     color: #333333;
-    left: 9px;
+    left: 0px;
     padding: 8px;
     top: 50%;
     transform: translate(0, -50%);
-    /* transition: all 0.3s ease 0s; */
+    transition: all 0.3s ease 0s;
     @media (any-hover: hover) {
       &:hover {
-        font-size: 18px;
-        color: $main-jellow;
-        left: 8px;
+        &::before {
+          /*   top: calc(50% - 10px); */
+          font-size: 20px;
+          color: $main-jellow;
+          transition: all 0.3s ease 0s;
+        }
       }
     }
   }
@@ -411,23 +414,32 @@
   &__list {
   }
 }
-._icon-arrow-down {
-}
 
 ._icon-favorite,
 ._icon-cart,
 ._icon-search {
-  font-size: 24px;
-  padding: 5px;
-  color: #262f56;
-  transition: color 0.3s ease 0s;
   @media (any-hover: hover) {
     &:hover {
-      color: $main-jellow;
+      &::before {
+        color: $main-jellow;
+      }
     }
   }
-  @media (max-width: ($md4 + px)) {
-    font-size: 17px;
+  &::before {
+    font-size: 24px;
+    padding: 5px;
+    color: #262f56;
+    transition: color 0.3s ease 0s;
+    @media (max-width: ($md4 + px)) {
+      font-size: 17px;
+    }
+  }
+}
+._icon-search {
+  @media (max-width: ($md3 + px)) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -448,15 +460,15 @@
     color: $main-white;
     font-weight: 900;
     right: -5px;
-    top: -5px;
+    top: -10px;
     @include adaptiv-value("height", 20, 15, 1);
     @include adaptiv-value("width", 20, 15, 1);
     @include adaptiv-value("font-size", 12, 8, 1);
     border-radius: 50%;
     text-align: center;
     @media (max-width: ($md4 + px)) {
-      right: -2px;
-      top: -2px;
+      right: -4px;
+      top: -8px;
     }
   }
 }
