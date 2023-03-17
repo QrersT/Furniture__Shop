@@ -16,14 +16,15 @@
     scroll-behavior: smooth;
   }
 }
+$main-color: #3a3a3a;
 
 body {
   margin: 0;
-  font-family: "Montserrat";
+  font-family: "Gilroy";
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.4;
-  color: #000000;
+  color: $main-color;
   background-color: #fff;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -147,6 +148,9 @@ ol ul,
 ul ol {
   margin-bottom: 0;
 }
+li {
+  list-style-type: none;
+}
 
 dt {
   font-weight: 700;
@@ -192,7 +196,7 @@ sup {
 }
 
 a {
-  color: #0d6efd;
+  color: #000;
   text-decoration: none;
 }
 a:hover {
@@ -293,6 +297,8 @@ label {
 
 button {
   border-radius: 0;
+
+  background: transparent;
 }
 
 button:focus:not(:focus-visible) {

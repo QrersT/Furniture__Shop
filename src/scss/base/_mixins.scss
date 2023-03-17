@@ -8,7 +8,11 @@
 
 @mixin adaptiv-value($property, $startSize, $minSize, $type) {
   $maxWidth: 1440; //розмір полотна сайту(макету)
+  /* <<<<<<< HEAD
   $maxWidthContainer: 1200; //розмір контейнеру
+=======
+  $maxWidthContainer: 1270; //розмір контейнеру
+>>>>>>> b36678b (finished header and mobile burger) */
   //-----------------------------------------------------------------
   $addSize: $startSize - $minSize;
   @if $type==1 {

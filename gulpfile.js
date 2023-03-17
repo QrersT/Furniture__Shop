@@ -72,4 +72,28 @@ gulp.task("watch", function () {
   gulp.watch("src/fonts/**/*", gulp.parallel("fonts"));
 });
 
+/* <<<<<<< HEAD
 gulp.task("default", gulp.parallel("watch", "server", "styles", "html", "scripts", "fonts", "images", "icons"));
+======= */
+gulp.task("default", gulp.parallel("watch", "server", "styles", "html", "scripts", "fonts", "images", "icons"));
+
+// import gulp, { src, dest } from "gulp";
+// import gulpFont from "gulp-font";
+
+// export function font() {
+//   return src("src/assets/fonts/**/*.{ttf,otf}", { read: false })
+//     .pipe(
+//       gulpFont({
+//         ext: ".css",
+//         fontface: "src/assets/fonts",
+//         relative: "/assets/fonts",
+//         dest: "dist/assets/fonts",
+//         embed: ["woff"],
+//         collate: false,
+//       })
+//     )
+//     .pipe(dest("dist/assets/fonts"));
+// }
+
+// font.description = "Generate web font package from ttf and otf files.";
+/* >>>>>>> b36678b (finished header and mobile burger) */
