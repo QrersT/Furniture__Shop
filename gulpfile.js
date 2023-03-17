@@ -72,16 +72,4 @@ gulp.task("watch", function () {
   gulp.watch("src/fonts/**/*", gulp.parallel("fonts"));
 });
 
-gulp.task(
-  "default",
-  gulp.parallel(
-    "watch",
-    "server",
-    "styles",
-    "html",
-    "scripts",
-    "fonts",
-    "images",
-    "icons"
-  )
-);
+gulp.task("default", gulp.parallel("watch", "server", "styles", "html", "scripts", "fonts", "images", "icons"));
