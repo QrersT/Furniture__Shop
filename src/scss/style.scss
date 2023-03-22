@@ -4,6 +4,7 @@
 @import "base/fonts";
 @import "base/icons-font";
 @import "base/mixins";
+@import "base/ui";
 
 @import "blocks/footer";
 @import "blocks/header";
@@ -13,6 +14,16 @@
 
 //шрифт за замовчуванням вказати в бутстрапі, або підключити самому.
 
+.page {
+  flex: 1 1 auto;
+  min-height: 125px;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
 body {
   background-color: #f9f1e7;
+  /* display: flex;
+  flex-direction: column; */
 }

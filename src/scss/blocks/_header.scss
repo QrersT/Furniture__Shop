@@ -3,11 +3,13 @@
   width: 100%;
   left: 0;
   right: 0;
+  max-height: 125px;
   &__wrapper {
     position: fixed;
     left: 0;
     right: 0;
     z-index: 5;
+    background-color: #f9f1e7;
   }
   &__body {
     display: flex;
@@ -74,6 +76,7 @@
       transition: left 0.3s ease 0s;
       padding: 70px 15px 30px 15px;
       &:before {
+        transition: all 0.3s ease 0s;
         content: "";
         position: fixed;
         left: -100%;

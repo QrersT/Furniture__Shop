@@ -29,7 +29,13 @@ gulp.task("styles", function () {
         suffix: ".min",
       })
     )
-    .pipe(autoprefixer())
+    .pipe(
+      autoprefixer({
+        /* grid: true,
+        overrideBrowsersList: ["last 5 versions"],
+        cascade: true, */
+      })
+    )
     .pipe(
       cleanCSS({
         compatibility: "ie8",
@@ -72,9 +78,6 @@ gulp.task("watch", function () {
   gulp.watch("src/fonts/**/*", gulp.parallel("fonts"));
 });
 
-/* <<<<<<< HEAD
-gulp.task("default", gulp.parallel("watch", "server", "styles", "html", "scripts", "fonts", "images", "icons"));
-======= */
 gulp.task("default", gulp.parallel("watch", "server", "styles", "html", "scripts", "fonts", "images", "icons"));
 
 // import gulp, { src, dest } from "gulp";

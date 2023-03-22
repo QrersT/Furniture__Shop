@@ -1,0 +1,9 @@
+//reusable stiles
+._footer-title {
+  font-weight: 700;
+  font-size: 24px;
+  color: #000000;
+  line-height: 29px;
+  @include adaptiv-value("font-size", 24, 20, 1);
+  line-height: calc(29 / 24) * 100%;
+}

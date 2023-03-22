@@ -90,6 +90,7 @@ function autoSpollers() {
           if (hideSpollerBody) {
             spollerTitle.removeAttribute("tabindex");
           }
+          //видимість спойлерів(visibility: hidden)
           if (!spollerTitle.classList.contains("_active")) {
             spollerTitle.nextElementSibling.hidden = true;
           } else {
