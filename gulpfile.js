@@ -68,35 +68,32 @@ gulp.task("images", function () {
 gulp.task("icons", function () {
   return gulp.src("src/icons/**/*").pipe(gulp.dest("dist/icons"));
 });
+gulp.task("json", function () {
+  return gulp.src("src/json/**/*.json").pipe(gulp.dest("dist/json"));
+});
 
 gulp.task("watch", function () {
   gulp.watch("src/scss/**/*.scss", gulp.parallel("styles"));
   gulp.watch("src/**/*.html").on("change", gulp.parallel("html"));
+  gulp.watch("src/json/**/*.json", gulp.parallel("json"));
   gulp.watch("src/js/**/*.js", gulp.parallel("scripts"));
   gulp.watch("src/img/**/*", gulp.parallel("images"));
   gulp.watch("src/icons/**/*", gulp.parallel("icons"));
   gulp.watch("src/fonts/**/*", gulp.parallel("fonts"));
 });
 
-gulp.task("default", gulp.parallel("watch", "server", "styles", "html", "scripts", "fonts", "images", "icons"));
+/* gulp.task("default", gulp.parallel("watch", "server", "styles", "html", "scripts", "fonts", "images", "icons")); */
 
-// import gulp, { src, dest } from "gulp";
-// import gulpFont from "gulp-font";
-
-// export function font() {
-//   return src("src/assets/fonts/**/*.{ttf,otf}", { read: false })
-//     .pipe(
-//       gulpFont({
-//         ext: ".css",
-//         fontface: "src/assets/fonts",
-//         relative: "/assets/fonts",
-//         dest: "dist/assets/fonts",
-//         embed: ["woff"],
-//         collate: false,
-//       })
-//     )
-//     .pipe(dest("dist/assets/fonts"));
-// }
-
-// font.description = "Generate web font package from ttf and otf files.";
-/* >>>>>>> b36678b (finished header and mobile burger) */
+gulp.task(
+  "default",
+  gulp.series(
+    "styles",
+    "html",
+    "scripts",
+    "fonts",
+    "images",
+    "icons",
+    "json", // Додаємо сюди новий таск
+    gulp.parallel("watch", "server")
+  )
+);

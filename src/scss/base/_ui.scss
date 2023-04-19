@@ -1,4 +1,12 @@
 //reusable stiles
+
+._flyImage {
+  opacity: 1;
+  position: fixed;
+  z-index: 100;
+  transition: all 1s ease 0s;
+}
+
 ._footer-title {
   font-weight: 700;
   font-size: 24px;
@@ -6,4 +14,64 @@
   line-height: 29px;
   @include adaptiv-value("font-size", 24, 20, 1);
   line-height: calc(29 / 24) * 100%;
+}
+
+._title {
+  font-weight: 700;
+  @include adaptiv-value("font-size", 40, 24, 1);
+  line-height: 120%;
+  text-align: center;
+}
+
+._ibg {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+._ibg img {
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.slider-arrows {
+}
+.slider-arrow {
+}
+.swiper-button-prev {
+}
+.slider-arrow_prev {
+}
+
+.btn {
+  display: inline-flex;
+  padding: 0 15px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: $main-jellow;
+  transition: all 0.3s ease 0s;
+  min-height: 48px;
+
+  &_white {
+    color: $main-jellow;
+    background-color: #ffffff;
+    @media (any-hover: hover) {
+      &:hover {
+        color: #fff;
+        background-color: $main-jellow;
+      }
+    }
+  }
+
+  @media (min-width: ($md2 + px)) {
+    &:hover {
+    }
+  }
 }

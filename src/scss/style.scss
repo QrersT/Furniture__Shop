@@ -8,6 +8,11 @@
 
 @import "blocks/footer";
 @import "blocks/header";
+@import "blocks/page-main__slider";
+@import "blocks/slider-training";
+@import "blocks/page-advantages";
+@import "blocks/page-products";
+@import "blocks/page-rooms";
 @import "media/media";
 
 // &display=swap  - добавить в конец кода при использовании плагина для подключения шрифта
@@ -21,9 +26,24 @@
 .wrapper {
   display: flex;
   flex-direction: column;
+  min-height: 100%;
 }
 body {
-  background-color: #f9f1e7;
   /* display: flex;
   flex-direction: column; */
+  overflow: visible;
+  overflow-x: hidden;
+  /* @media (min-width: ($md2 + px)) {
+    @include adaptiv-value("width", 934, 290, 1);
+  } */
+}
+
+.time__wrapper {
+  height: 125px;
+  @media (max-width: ($md2 + px)) {
+    height: 80px;
+  }
+  @media (max-width: ($md3 + px)) {
+    height: 50px;
+  }
 }

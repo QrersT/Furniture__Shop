@@ -3,6 +3,17 @@ function isTouchDevice() {
   return "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 }
 
+function ibg() {
+  let ibg = document.querySelectorAll(".ibg");
+  for (var i = 0; i < ibg.length; i++) {
+    if (ibg[i].querySelector("img")) {
+      ibg[i].style.backgroundImage = "url(" + ibg[i].querySelector("img").getAttribute("src") + ")";
+    }
+  }
+}
+
+ibg();
+
 function autoSpollers() {
   const spollersArray = document.querySelectorAll("[data-spollers]");
   if (spollersArray.length > 0) {
@@ -210,5 +221,144 @@ function openCloseBurger() {
 }
 openCloseBurger();
 //------------------------------------------------------------------
+/* function changePositionOfBlock() {
+  //wrapper of block that we need to move
+  const parentOriginal = document.querySelector(".main-slider__content");
+  //wrapper of block where we need to move it
+  const parent = document.querySelector(".slider-main__body");
+  //block itself
+  const item = document.querySelector(".content__block_item");
+  const viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
+  function moovePosition() {
+    if (viewportWidth <= 992) {
+      console.log("dfsdf");
+      if (!item.classList.contains("done")) {
+        parent.insertBefore(item, parent.children[5]);
+        item.classList.add("done");
+      }
+    } else {
+      if (item.classList.contains("done")) {
+        parentOriginal.insertBefore(item, parentOriginal.children[5]);
+        item.classList.remove("done");
+      }
+    }
+  }
+  //-----------------------------------------------------------------
+  moovePosition();
+
+  window.addEventListener("resize", (e) => {
+    moovePosition();
+  });
+}
+changePositionOfBlock(); */
 //-----------------------------------------------------------------
+//Додавання елементів в корзину
+function addToCart(productButton, productId) {
+  if (!productButton.classList.contains("_hold")) {
+    productButton.classList.add("_hold");
+    productButton.classList.add("_fly");
+
+    const cart = document.querySelector(".cart-header__icon");
+    const product = document.querySelector(`[data-pid="${productId}"]`);
+    const productImage = product.querySelector(".item-product__image");
+
+    const productImageFly = productImage.cloneNode(true);
+
+    const productImageFlyWidth = productImage.offsetWidth;
+    const productImageFlyHeight = productImage.offsetHeight;
+    const productImageFlytop = productImage.getBoundingClientRect().top;
+    const productImageFlyleft = productImage.getBoundingClientRect().left;
+
+    productImageFly.classList.add("_flyImage");
+    productImageFly.style.cssText = `
+    left: ${productImageFlyleft}px;
+    top: ${productImageFlytop}px;
+    width: ${productImageFlyWidth}px;
+    height:${productImageFlyHeight}px;
+    `;
+    document.body.append(productImageFly);
+
+    const cartFlyLeft = cart.getBoundingClientRect().left;
+    const cartFlyTop = cart.getBoundingClientRect().top;
+
+    productImageFly.style.cssText = `
+    width: 0px;
+    height: 0px;
+    left: ${cartFlyLeft}px;
+    top: ${cartFlyTop}px;
+    
+    opacity: 0;
+    `;
+
+    setTimeout(() => {
+      if (productButton.classList.contains("_fly")) {
+        productImageFly.remove();
+        updateCart(productButton, productId);
+        productButton.classList.remove("_fly");
+      }
+    }, 1000);
+  }
+}
+
+function closeCart() {
+  const cartBody = document.querySelector(".cart-header__body");
+  cartBody.classList.remove("_active");
+}
+
+function updateCart(productButton, productId, productAdd = true) {
+  const cart = document.querySelector(".cart-header");
+  const cartIcon = cart.querySelector(".cart-header__icon");
+  const cartQuantity = cartIcon.querySelector("span");
+  /* const cardProduct = document.querySelector(`[data-pid="${productId}"]`); */
+  const cartProduct = document.querySelector(`[data-cart-pid="${productId}"]`);
+  const cartList = document.querySelector(".cart-header__list");
+
+  //додавання в корзину
+  if (productAdd) {
+    const noItemsCart = document.querySelector(".cart-header__no-items");
+    if (noItemsCart) {
+      noItemsCart.classList.remove("_active");
+    }
+    if (cartQuantity) {
+      cartQuantity.innerHTML = ++cartQuantity.innerHTML;
+    } else {
+      cartIcon.insertAdjacentElement("beforeend", "<span>1</span>");
+    }
+
+    if (!cartProduct) {
+      const product = document.querySelector(`[data-pid="${productId}"]`);
+      const cartProductImage = product.querySelector(".item-product__image").innerHTML;
+      const cartProductTitle = product.querySelector(".item-product__title").innerHTML;
+
+      const cartProductContent = `
+            <a href="" class="cart-list__image">${cartProductImage}</a>
+            <div class="cart-list__body">
+                <a href="" class="cart-list__title">${cartProductTitle}</a>
+                <div class="cart-list__quantity">Quantity: <span>1</span></div>
+                <a href="" class="cart-list__delete">Delete</a>
+            </div>`;
+      cartList.insertAdjacentHTML("beforeend", `<li data-cart-pid="${productId}" class="cart-list__item">${cartProductContent}</li>`);
+    } else {
+      const cartProductQuantity = cartProduct.querySelector("span");
+      cartProductQuantity.innerHTML = ++cartProductQuantity.innerHTML;
+    }
+
+    //після всій дій
+    productButton.classList.remove("_hold");
+  } else {
+    const cartProductQuantity = cartProduct.querySelector(".cart-list__quantity span");
+    const product = document.querySelector(`[data-pid="${productId}"]`);
+    const noItemsCart = document.querySelector(".cart-header__no-items");
+    cartProductQuantity.innerHTML = --cartProductQuantity.innerHTML;
+    cartQuantity.innerHTML = --cartQuantity.innerHTML;
+
+    if (cartProductQuantity.innerHTML == 0) {
+      cartProductQuantity.closest(".cart-list__item").remove();
+    }
+    if (!document.querySelector(".cart-header__list").hasChildNodes()) {
+      noItemsCart.classList.add("_active");
+      console.log(true);
+    }
+  }
+}

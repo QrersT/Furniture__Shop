@@ -1,0 +1,225 @@
+.page-products {
+  overflow: hidden;
+}
+
+/* ._item-product {
+  &__price_old {
+  }
+} */
+.products {
+  @include adaptiv-value("padding-bottom", 44, 30, 1);
+  &__container {
+  }
+  &__items {
+    display: grid;
+    gap: 30px;
+    justify-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
+    transition: all 0.3s ease 0s;
+    height: 100%;
+  }
+  &__footer {
+    text-align: center;
+    @include adaptiv-value("padding-top", 30, 15, 1);
+    @include adaptiv-value("padding-bottom", 30, 15, 1);
+  }
+  .products__more {
+    border: 1px solid $main-jellow;
+    min-width: 245px;
+
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: $main-jellow;
+        color: #fff;
+      }
+    }
+
+    &._hold {
+      opacity: 0.3;
+      cursor: default;
+    }
+  }
+}
+._container {
+}
+.products-title {
+  margin: 0px 0px calc(32px / 40px) * 1em 0px;
+}
+
+.products-item {
+}
+.item-product {
+  background-color: #f4f5f7;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  max-width: 400px;
+  width: 100%;
+  height: 100%;
+
+  @media (any-hover: hover) {
+    &:hover {
+      .item-product__actions {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+
+  &__labels {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    @include adaptiv-value("right", 24, 10, 1);
+    @include adaptiv-value("top", 24, 10, 1);
+  }
+
+  &__label {
+    flex: 0 0 48px; //висота
+    width: 48px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: 500;
+
+    &:not(:last-child) {
+      margin: 0 0 10px 0;
+    }
+
+    &_sale {
+      background-color: #e97171;
+    }
+
+    &_new {
+      background-color: #2ec1ac;
+    }
+  }
+
+  &__image {
+    /*  width: 100%; */
+    img {
+      width: 100%;
+    }
+  }
+  &__body {
+    flex: 1 1 auto;
+    padding: 16px 16px 30px 16px;
+    display: flex;
+    flex-direction: column;
+  }
+  &__content {
+    flex: 1 1 auto;
+  }
+  &__title {
+    @include adaptiv-value("font-size", 24, 20, 1);
+    font-weight: 600;
+    line-height: 120%;
+    margin: 0px 0px calc(8px / 24px) * 1em 0px;
+  }
+  &__text {
+    color: $main-grey;
+    font-weight: 500;
+    line-height: 150%;
+    margin: 0px 0px calc(8px / 16px) * 1em 0px;
+  }
+  &__prices {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    line-height: 150%;
+  }
+  &__price {
+    font-weight: 600;
+    font-size: 20px;
+  }
+  &__price._item-product__price_old {
+    font-weight: 400;
+    font-size: 16px;
+    color: #b0b0b0;
+    margin: 0px 0px 0px 15px;
+    text-decoration: line-through;
+  }
+  &__actions {
+    @media (any-hover: hover) {
+      transition: all 0.5s ease 0s;
+      opacity: 0;
+      visibility: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba($color: #3a3a3a, $alpha: 0.7);
+    }
+  }
+}
+
+.actions-product {
+  padding: 10px 0;
+  &__body {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+
+    @media (any-hover: hover) {
+      max-width: 202px;
+    }
+  }
+
+  &__button {
+    width: 100%;
+    margin-bottom: 24px;
+    &._hold {
+      opacity: 0.3;
+      cursor: default;
+    }
+  }
+
+  &__links {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+  &__link {
+    padding: 4px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    transition: all 0.3s ease 0s;
+
+    &::before {
+      margin-right: 10px;
+      font-size: 16px;
+    }
+    @media (any-hover: none) {
+      color: #000;
+    }
+
+    @media (any-hover: hover) {
+      color: #fff;
+      &:hover {
+        color: $main-jellow;
+      }
+    }
+  }
+}
+.btn {
+}
+.btn_white {
+}
+._icon-share {
+}
+._icon-heart {
+}
