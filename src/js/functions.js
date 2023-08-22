@@ -358,7 +358,6 @@ function updateCart(productButton, productId, productAdd = true) {
     }
     if (!document.querySelector(".cart-header__list").hasChildNodes()) {
       noItemsCart.classList.add("_active");
-      console.log(true);
     }
   }
 }

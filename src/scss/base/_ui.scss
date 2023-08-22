@@ -75,3 +75,33 @@
     }
   }
 }
+
+._pop-gallery__wrapper {
+}
+._pop-gallery__wrapper._active {
+  transition: all 0.5s ease 0s;
+  background-color: rgba($color: #000000, $alpha: 0.8);
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  /*  margin: 0 -40px 0 -40px; */
+  left: 0;
+  top: 0;
+  position: fixed;
+  z-index: 110;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: filter 0.2s ease 0s;
+
+  img {
+    width: 30%;
+    @media (min-width: ($md1 + px)) {
+      width: 20%;
+      @include adaptiv-value("width", 20%, 10%, 1);
+    }
+    filter: grayscale(0);
+  }
+  /*  width: 100%;
+  height: 100%; */
+}

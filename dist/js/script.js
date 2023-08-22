@@ -1,5 +1,9 @@
 "use strict";
-//check if window is touch screen
+import { favourite_product } from "../js/app/favourite_product.js";
+const a = "fg";
+const b = "fdfs";
+
+//check if window is touch screens
 function isTouchDevice() {
   return "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 }
@@ -31,6 +35,7 @@ window.onload = function () {
     if (typeof targetElement !== "undefined" && targetElement.classList.contains("products__more")) {
       getProducts(targetElement);
       e.preventDefault();
+      favourite_product();
     }
     //-----------------------------------------------------------------
     //hidden remove
@@ -259,4 +264,53 @@ window.onload = function () {
   }
   openCart();
   //-----------------------------------------------------------------
+  //furnirure Gallery
+
+  const furniture = document.querySelector(".furniture__body");
+  if (furniture && !isTouchDevice()) {
+    const furnitureItems = furniture.querySelector(".furniture__items");
+    const furnitureColumns = furniture.querySelectorAll(".furniture__row");
+    const speed = furniture.dataset.speed;
+    let possitionX = 0;
+    let coordXPercent = 0;
+
+    function setMouseGalleryStyle() {
+      let furnitureItemsWidths = 0;
+      furnitureColumns.forEach((column) => {
+        furnitureItemsWidths += column.offsetWidth;
+      });
+
+      const furnitureDifferent = furnitureItemsWidths - furniture.offsetWidth;
+      const distX = Math.floor(coordXPercent - possitionX);
+
+      possitionX = possitionX + distX * speed;
+      let possition = (furnitureDifferent / 200) * possitionX;
+
+      furnitureItems.style.cssText = `transform: translate3d(${possition}px,0,0);`;
+
+      if (Math.abs(distX) > 0) {
+        requestAnimationFrame(setMouseGalleryStyle);
+      } else {
+        furniture.classList.remove("_init");
+      }
+    }
+
+    furniture.addEventListener("mousemove", (e) => {
+      //отримання ширини
+      const furnitureWidth = furniture.offsetWidth;
+      //Нуль по середині
+      const coordX = e.pageX - furnitureWidth / 2;
+      //отримуємо відсотки
+      coordXPercent = (coordX / furnitureWidth) * 200;
+
+      if (!furniture.classList.contains("_init")) {
+        requestAnimationFrame(setMouseGalleryStyle);
+        furniture.classList.add("_init");
+      }
+    });
+  }
+
+  //-----------------------------------------------------------------
 };
+
+alert("Працює тільки додавання товарів до кошику");
